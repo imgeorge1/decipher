@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Binary Decoder</title>
+</head>
+<body>
+  <h1>Binary Decoder</h1>
+  <textarea id="binary" rows="10" cols="60">01000001 01000010 01000011</textarea><br>
+  <button onclick="decode()">Decode</button>
+  <pre id="output"></pre>
+
+  <script src="decoder.js"></script>
+  <script>
+    async function decode() {
+      await Module.ready;
+      const input = document.getElementById("binary").value;
+      const ptr = Module.allocateUTF8(input);
+      const resultPtr = Module._decode(ptr);
+      const output = Module.UTF8ToString(resultPtr);
+      document.getElementById("output").innerText = output;
+    }
+  </script>
+</body>
+</html>
