@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <title>Binary Decoder</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
-  <h1>Special Binary Decoder</h1>
+  <h1><a href=""><img src="dDVqExl.png" alt="logo"></a></h1>
   <textarea id="binary" rows="10" cols="60" placeholder="Enter your code here"></textarea><br>
-  <button onclick="decode()">Decode</button>
+  <button id="animatedButton" onclick="decode()">Decode</button>
   <pre id="output"></pre>
 
   <script src="decoder.js"></script>
@@ -20,6 +23,29 @@
       const output = Module.UTF8ToString(resultPtr);
       document.getElementById("output").innerText = output;
     }
+    const button = document.getElementById('animatedButton');
+    let isDown = false;
+
+    button.addEventListener('mouseenter', () => {
+    if (!isDown) button.classList.add('hovered');
+    });
+
+    button.addEventListener('mouseleave', () => {
+    button.classList.remove('hovered', 'pressed');
+    isDown = false;
+    });
+
+    button.addEventListener('mousedown', () => {
+    isDown = true;
+    button.classList.remove('hovered');
+    button.classList.add('pressed');
+    });
+
+    button.addEventListener('mouseup', () => {
+    isDown = false;
+    button.classList.remove('pressed');
+    button.classList.add('hovered');
+    });
   </script>
 </body>
 </html>
